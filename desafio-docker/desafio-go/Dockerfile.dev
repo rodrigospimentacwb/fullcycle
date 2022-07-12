@@ -1,0 +1,24 @@
+FROM --platform=linux/amd64 alpine:latest
+RUN apk update && \
+    apk upgrade && \
+    apk add bash && \
+    apk add libc6-compat
+
+COPY go1.12.1.linux-amd64.tar.gz .
+
+RUN tar -xvf go1.12.1.linux-amd64.tar.gz -C /usr/local && \
+    mkdir -p $HOME/go/{bin,src} && \
+    rm go1.12.1.linux-amd64.tar.gz
+
+ENV GOPATH=$HOME/go
+ENV PATH=$PATH:$GOPATH/bin
+ENV PATH=$PATH:$GOPATH/bin:/usr/local/go/bin
+
+RUN mkdir workspace
+
+COPY hello.go /workspace
+
+RUN cd workspace && \ 
+    go build -o /workspace/hello
+
+ENTRYPOINT [ "./workspace/hello" ]
