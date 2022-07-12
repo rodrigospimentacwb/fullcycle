@@ -1,4 +1,4 @@
-# fullcycle
+# FullCycle
 Projetos do curso FullCycle. Teste de imagem com menos de 2MB.
 
 ## Para rodar:
