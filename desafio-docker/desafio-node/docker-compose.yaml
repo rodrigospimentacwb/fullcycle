@@ -17,13 +17,14 @@ services:
   app:
     build:
       context: node
+      dockerfile: Dockerfile
     container_name: app
     entrypoint: dockerize -wait tcp://db:3306 -timeout 20s docker-entrypoint.sh
-    command: node index.js
+    command: node pages/index.js
     networks:
       - node-network
     volumes:
-      - ./node:/usr/src/app
+      - ./node:/usr/src/app/pages
     tty: true
     depends_on:
       - db

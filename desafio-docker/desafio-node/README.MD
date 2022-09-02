@@ -8,7 +8,8 @@ Application ...
     docker run --rm -it -v ~/dev/workspace_pessoal/desafio-docker/desafio-node/src/:/usr/src/app -p 3000:3000 node:15 bash
     cd /usr/src/app
     npm init
-    npm install express --save
+    npm install express -y
+    npm install mysql -y
     
 ## Access DB container and create table:
 
