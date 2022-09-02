@@ -10,10 +10,12 @@ const config = {
 const mysql = require('mysql')
 const connection = mysql.createConnection(config)
 
+const sqlCreateTable = `create table IF NOT EXISTS people(id int not null auto_increment, name varchar(255), primary key (id))`
 const sqlInsert = `INSERT INTO people(name) values ('Rodrigo S. Pimenta')`
 const sqlSelect = `SELECT name FROM people`
 
 
+connection.query(sqlCreateTable)
 connection.query(sqlInsert)
 const rows = connection.query(sqlSelect);
 
